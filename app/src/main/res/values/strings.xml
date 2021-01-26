@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AndroidHelloworld</string>
+    <string name="launcher_text">This is Launcher screen</string>
+    <string name="android_poc_text">Android POC</string>
+</resources>
