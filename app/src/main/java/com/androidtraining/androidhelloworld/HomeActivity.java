@@ -9,21 +9,6 @@ import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
 
-    /* TextView
-    * Button
-    * ImageView
-    * ImageButton
-    * Switch
-    * Seek bar
-    * RecyclerView
-    * Progress Bar
-    * Radio Button
-    * Check Box
-    * Alert Dialog
-    * Spinner
-    * Date Picker
-    * Time Picker */
-
     TextView welcome_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
