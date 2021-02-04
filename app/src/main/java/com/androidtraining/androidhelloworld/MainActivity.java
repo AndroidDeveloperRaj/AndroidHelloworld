@@ -5,16 +5,26 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +39,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     CheckBox checkBox1,checkBox2;
     ImageButton imagebutton;
     ProgressBar progressBar;
+    Switch switchComponent;
+    EditText editText;
+    SeekBar seekBarId;
+    WebView webView;
     public static String dataKey = "dataKey";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +62,36 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         progressBar = findViewById(R.id.progress);
 
+        switchComponent = findViewById(R.id.switchComponent);
+        editText = findViewById(R.id.editText);
+        seekBarId = findViewById(R.id.seekBarId);
+        webView = findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl("https://developer.android.com/reference/android/widget/Adapter");
+
+        /*webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                webView.loadUrl("https://developer.android.com/reference/android/widget/Adapter");
+                return true;
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+            }
+
+        });*/
 
         checkBox1.setOnCheckedChangeListener(this);
         checkBox2.setOnCheckedChangeListener(this);
@@ -57,6 +101,55 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         helloworldText.setOnClickListener(this);
         progressBar.setOnClickListener(this);
 
+        switchComponent.setOnCheckedChangeListener(this);
+
+        seekBarId.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+               Log.d("seekbar","progress"+ progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                Log.d("seekbar","start Tracking");
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Log.d("seekbar","stop Tracking");
+            }
+        });
+
+        //editText.setOnClickListener(this);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                Log.d("editText","Before Text Change");
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.d("editText","On Text Change");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Log.d("editText","After Text Change");
+                helloworldText.setText("Hello World");
+            }
+        });
+
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus) {
+                    Toast.makeText(MainActivity.this,"In Focus",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this,"Not In Focus",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         /*checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -64,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                     checkBox2.setChecked(false);
                     Toast.makeText(MainActivity.this,"Checkbox2 unselected",Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(MainActivity.this,"Checkbox1 unselected by itself",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Checkbox1 unselected by itself",T oast.LENGTH_LONG).show();
                 }
             }
         });
@@ -205,15 +298,22 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         switch (buttonView.getId()) {
             case R.id.checkbox1 :
                     checkBox2.setChecked(false);
+                    editText.setFocusable(false);
                     Log.d("checkbox","checkbox2 unselected");
                     Toast.makeText(MainActivity.this,"checkbox2 unselected",Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.checkbox2 :
                     checkBox1.setChecked(false);
+                    editText.requestFocus();
+                    editText.setFocusable(true);
                     Log.d("radio","checkbox1 unselected");
                     Toast.makeText(MainActivity.this,"checkbox1 unselected",Toast.LENGTH_LONG).show();
                break;
+
+            case R.id.switchComponent :
+                Toast.makeText(MainActivity.this,"switch is" + isChecked,Toast.LENGTH_LONG).show();
+                break;
 
         }
     }
@@ -224,7 +324,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             case R.id.button_bottom :
                 btn1.setChecked(false);
                 Log.d("radio","button1 unselected");
-                Toast.makeText(MainActivity.this,"button1 unselected",Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+                startActivity(intent);
+             //   Toast.makeText(MainActivity.this,"button1 unselected",Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.imageButton :
@@ -238,6 +341,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             case R.id.progress :
                 progressBar.setVisibility(View.GONE);
                 break;
+            case R.id.editText  :
+                editText.setBackgroundColor(getResources().getColor(R.color.purple_700));
+                break;
+
+
+
         }
     }
 }

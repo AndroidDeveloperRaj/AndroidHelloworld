@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -45,13 +49,58 @@
         android:layout_marginTop="@dimen/dimen_30"
         />
 
+    <!-- switch
+        Seek Bar-->
+
+    <Switch
+        android:id="@+id/switchComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_30"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_30"
+        android:visibility="gone"
+        />
+
+    <SeekBar
+        android:id="@+id/seekBarId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:max="100"
+        android:layout_marginTop="@dimen/margin_20"
+        />
+
+     <WebView
+         android:id="@+id/webView"
+         android:layout_width="match_parent"
+         android:layout_height="100dp"
+         android:visibility="gone"
+         app:layout_constraintTop_toTopOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"/>
+
  <RadioGroup
      android:id="@+id/radio_group"
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
-     app:layout_constraintTop_toBottomOf="@id/image"
+     app:layout_constraintTop_toBottomOf="@id/seekBarId"
      android:orientation="horizontal"
-     android:layout_marginTop="40dp">
+     android:layout_marginTop="40dp"
+     android:visibility="gone">
     <RadioButton
         android:id="@+id/radio_btn1"
         android:layout_width="wrap_content"
@@ -75,18 +124,20 @@
         android:id="@+id/checkbox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/radio_group"
+        app:layout_constraintTop_toBottomOf="@id/seekBarId"
         app:layout_constraintStart_toStartOf="@id/hello_world_text"
         android:checked="true"
+        android:layout_marginTop="@dimen/dimen_30"
         />
 
     <CheckBox
         android:id="@+id/checkbox2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/radio_group"
+        app:layout_constraintTop_toBottomOf="@id/seekBarId"
         app:layout_constraintEnd_toEndOf="@id/hello_world_text"
         android:checked="false"
+        android:layout_marginTop="@dimen/dimen_30"
         />
 
     <ImageButton
@@ -125,3 +176,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
