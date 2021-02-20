@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:id = "@+id/rootview"
+    android:layout_width = "match_parent"
+    android:layout_height = "match_parent"
+    android:orientation = "vertical"
+    android:background = "#c1c1c1"
+    android:gravity = "center_horizontal"
+    tools:context = ".MainActivity">
+    <Button
+        android:id = "@+id/asyncTask"
+        android:text = "Download"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content" />
+    <ImageView
+        android:id = "@+id/image"
+        android:layout_width = "300dp"
+        android:layout_height = "300dp" />
+</LinearLayout>
+<!--<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/firstText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is ViewGroup and View example"
+        android:textSize="@dimen/title_text_size"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/margin_20"/>
+
+    <TextView
+        android:id="@+id/secondText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/firstText"
+        android:textSize="@dimen/title_text_size"
+        android:text="This is ViewGroup2 and View example2"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/margin_20"/>
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="Click Here"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            />
+    </FrameLayout>
+    &lt;!&ndash;<TextView
+        android:id="@+id/thirdText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/firstText"
+        android:text="This is ViewGroup3 and View example3"
+        android:textSize="@dimen/title_text_size"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/margin_20"/>
+    <TextView
+        android:id="@+id/fourthText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/thirdText"
+        android:text="This is ViewGroup and View example"
+        android:textSize="@dimen/title_text_size"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/margin_20"/>
+    <TextView
+        android:id="@+id/fifthText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fourthText"
+        android:text="This is ViewGroup and View example"
+        android:textSize="@dimen/title_text_size"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/margin_20"/>&ndash;&gt;
+</RelativeLayout>-->
+
+
+

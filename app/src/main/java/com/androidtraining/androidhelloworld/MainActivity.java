@@ -3,7 +3,11 @@ package com.androidtraining.androidhelloworld;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -28,11 +32,14 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidtraining.androidhelloworld.fragments.MainFragment;
 import com.androidtraining.androidhelloworld.services.ServiceExample;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
-    TextView helloworldText;
+    TextView helloworldText,subtitle;
     Button buttonBottom;
     RadioButton btn1, btn2;
     RadioGroup radioGroup;
@@ -43,13 +50,25 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     EditText editText;
     SeekBar seekBarId;
     WebView webView;
+
+    ConstraintLayout parentView;
     public static String dataKey = "dataKey";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("tag"," Activity1 onCreate()");
+        Log.d("ActivityTag"," Activity1 onCreate()");
 
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,new MainFragment())
+                .commit();
+
+        /* Step by step procedure to add a fragment */
+       /* FragmentManager fm = getSupportFragmentManager();
+        MainFragment mainFragment = new MainFragment();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container,mainFragment).commit();*/
+
+       /* parentView = findViewById(R.id.parent);
         helloworldText = findViewById(R.id.hello_world_text);
         buttonBottom = findViewById(R.id.button_bottom);
         btn1 = findViewById(R.id.radio_btn1);
@@ -66,9 +85,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         editText = findViewById(R.id.editText);
         seekBarId = findViewById(R.id.seekBarId);
         webView = findViewById(R.id.webView);
+        subtitle = findViewById(R.id.subtitle);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl("https://developer.android.com/reference/android/widget/Adapter");
-
+*/
         /*webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setBuiltInZoomControls(true);
@@ -93,62 +113,63 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         });*/
 
-        checkBox1.setOnCheckedChangeListener(this);
-        checkBox2.setOnCheckedChangeListener(this);
-
-        buttonBottom.setOnClickListener(this);
-        imagebutton.setOnClickListener(this);
-        helloworldText.setOnClickListener(this);
-        progressBar.setOnClickListener(this);
-
-        switchComponent.setOnCheckedChangeListener(this);
-
-        seekBarId.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-               Log.d("seekbar","progress"+ progress);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                Log.d("seekbar","start Tracking");
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                Log.d("seekbar","stop Tracking");
-            }
-        });
-
-        //editText.setOnClickListener(this);
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                Log.d("editText","Before Text Change");
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.d("editText","On Text Change");
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                Log.d("editText","After Text Change");
-                helloworldText.setText("Hello World");
-            }
-        });
-
-        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    Toast.makeText(MainActivity.this,"In Focus",Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(MainActivity.this,"Not In Focus",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+//        checkBox1.setOnCheckedChangeListener(this);
+//        checkBox2.setOnCheckedChangeListener(this);
+//
+//        buttonBottom.setOnClickListener(this);
+//        imagebutton.setOnClickListener(this);
+//        helloworldText.setOnClickListener(this);
+//        progressBar.setOnClickListener(this);
+//        parentView.setOnClickListener(this);
+//
+//        switchComponent.setOnCheckedChangeListener(this);
+//
+//        seekBarId.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//               Log.d("seekbar","progress"+ progress);
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//                Log.d("seekbar","start Tracking");
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//                Log.d("seekbar","stop Tracking");
+//            }
+//        });
+//
+//        //editText.setOnClickListener(this);
+//        editText.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                Log.d("editText","Before Text Change");
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                Log.d("editText","On Text Change");
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                Log.d("editText","After Text Change");
+//                helloworldText.setText("Hello World");
+//            }
+//        });
+//
+//        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if(hasFocus) {
+//                    Toast.makeText(MainActivity.this,"In Focus",Toast.LENGTH_LONG).show();
+//                } else {
+//                    Toast.makeText(MainActivity.this,"Not In Focus",Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
 
         /*checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -174,22 +195,25 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             }
         });*/
         /* To add listener for RadioGroup which may contain number of radio buttons */
+/*
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case R.id.radio_btn1 :
-                        Toast.makeText(MainActivity.this,"button2 unselected",Toast.LENGTH_LONG).show();
+                      //  Toast.makeText(MainActivity.this,"button2 unselected",Toast.LENGTH_LONG).show();
+                        Snackbar.make(parentView,"\"button2 unselected", Snackbar.LENGTH_SHORT).show();
                         break;
 
                     case R.id.radio_btn2  :
-                        Toast.makeText(MainActivity.this,"button1 unselected",Toast.LENGTH_LONG).show();
+                      //  Toast.makeText(MainActivity.this,"button1 unselected",Toast.LENGTH_LONG).show();
                         break;
                     default: Toast.makeText(MainActivity.this,"not satisfied the condition",Toast.LENGTH_LONG).show();
                      break;
                 }
             }
         });
+*/
 
         /*buttonBottom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -234,35 +258,35 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d("tag","Activity1  onRestart()");
+        Log.d("ActivityTag","Activity1  onRestart()");
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d("tag"," Activity1 onStart()");
+        Log.d("ActivityTag"," Activity1 onStart()");
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("tag","Activity1  onResume()");
+        Log.d("ActivityTag","Activity1  onResume()");
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("tag"," Activity1 onPause()");
+        Log.d("ActivityTag"," Activity1 onPause()");
 
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d("tag"," Activity1 onStop()");
+        Log.d("ActivityTag"," Activity1 onStop()");
 
     }
 
@@ -275,24 +299,25 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        helloworldText.setOnClickListener(null);
-        Log.d("tag"," Activity1 onDestroy()");
+       // helloworldText.setOnClickListener(null);
+        Log.d("ActivityTag"," Activity1 onDestroy()");
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.d("tag"," Activity1 onSaveInstanceState()");
+       // Log.d("tag"," Activity1 onSaveInstanceState()");
 
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Log.d("tag"," Activity1 onRestoreInstanceState()");
+        //Log.d("tag"," Activity1 onRestoreInstanceState()");
     }
 
 
+    @SuppressLint("ResourceType")
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
@@ -300,7 +325,16 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                     checkBox2.setChecked(false);
                     editText.setFocusable(false);
                     Log.d("checkbox","checkbox2 unselected");
-                    Toast.makeText(MainActivity.this,"checkbox2 unselected",Toast.LENGTH_LONG).show();
+                   // Toast.makeText(MainActivity.this,"checkbox2 unselected",Toast.LENGTH_LONG).show();
+
+                /*Replacing the Toast message with SnackBar */
+
+               Snackbar.make(parentView,"checkbox2 unselected",Snackbar.LENGTH_SHORT)
+                       .setTextColor(getResources().getColor(R.color.white))
+                       .setBackgroundTint(getResources().getColor(R.color.black))
+                       .setAction("Android",MainActivity.this)
+                       .setActionTextColor(getResources().getColor(R.color.purple_700))
+                       .show();
                 break;
 
             case R.id.checkbox2 :
@@ -344,6 +378,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             case R.id.editText  :
                 editText.setBackgroundColor(getResources().getColor(R.color.purple_700));
                 break;
+
 
 
 

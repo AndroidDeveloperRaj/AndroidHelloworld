@@ -2,30 +2,54 @@ package com.androidtraining.androidhelloworld;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
-import com.androidtraining.androidhelloworld.adapter.RecyclerAdapter;
-import com.androidtraining.androidhelloworld.helpers.MyListData;
+import com.androidtraining.androidhelloworld.fragments.MainFragment;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class HomeActivity extends AppCompatActivity {
 
-    TextView welcome_text;
+    //TextView welcome_text;
 
-    RecyclerView recyclerView;
+   // RecyclerView recyclerView;
+
+   /* URL ImageUrl = null;
+    InputStream is = null;
+    Bitmap bmImg = null;
+    ImageView imageView= null;
+    ProgressDialog p;*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_layouts_example);
 
-        welcome_text =findViewById(R.id.welcome_text);
+        getSupportFragmentManager().beginTransaction().add(new MainFragment(),"MainFragment");
+        /*Button button=findViewById(R.id.asyncTask);
+        imageView=findViewById(R.id.image);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AsyncTaskExample asyncTask=new AsyncTaskExample();
+                asyncTask.execute("https://www.tutorialspoint.com/images/tp-logo-diamond.png");
+            }
+        });*/
+
+       /* welcome_text =findViewById(R.id.welcome_text);
 
 
-        /*Here we are specifying the data that need to be displayed in the RecyclerView*/
+        *//*Here we are specifying the data that need to be displayed in the RecyclerView*//*
         MyListData[] myListData = new MyListData[] {
                 new MyListData("Email", android.R.drawable.ic_dialog_email),
                 new MyListData("Info", android.R.drawable.ic_dialog_info),
@@ -37,15 +61,14 @@ public class HomeActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        /* RecyclerView will show the data on screen using Layout manager */
+        *//* RecyclerView will show the data on screen using Layout manager *//*
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // 6264285810
-        // brian zhang
-        /*Adapter links the data to the RecyclerView */
+
+        *//*Adapter links the data to the RecyclerView *//*
         RecyclerAdapter adapter = new RecyclerAdapter(myListData);
 
-        /*After setting up data into adapter we have to set the adapter to the RecyclerView*/
+        *//*After setting up data into adapter we have to set the adapter to the RecyclerView*//*
         recyclerView.setAdapter(adapter);
 
         if(getIntent().hasExtra(MainActivity.dataKey)){
@@ -54,7 +77,7 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             Log.d("print","You didn't received any data.");
         }
-
+*/
     }
 
     @Override
@@ -116,4 +139,43 @@ public class HomeActivity extends AppCompatActivity {
         Log.d("tag","Activity2  onRestoreInstanceState()");
     }
 
+/*
+    private class AsyncTaskExample extends AsyncTask<String, String, Bitmap> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            p = new ProgressDialog(HomeActivity.this);
+            p.setMessage("Please wait...It is downloading");
+            p.setIndeterminate(false);
+            p.setCancelable(false);
+            p.show();
+        }
+        @Override
+        protected Bitmap doInBackground(String... strings) {
+             try {
+                ImageUrl = new URL(strings[0]);
+                HttpURLConnection conn = (HttpURLConnection) ImageUrl.openConnection();
+                conn.setDoInput(true);
+                conn.connect();
+                is = conn.getInputStream();
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inPreferredConfig = Bitmap.Config.RGB_565;
+                bmImg = BitmapFactory.decodeStream(is, null, options);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return bmImg;
+        }
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+            if(imageView!=null) {
+                p.hide();
+                imageView.setImageBitmap(bitmap);
+            }else {
+                p.show();
+            }
+        }
+    }
+*/
 }
