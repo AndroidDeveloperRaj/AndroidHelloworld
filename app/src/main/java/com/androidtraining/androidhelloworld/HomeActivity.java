@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.androidtraining.androidhelloworld.fragments.MainFragment;
+import com.androidtraining.androidhelloworld.fragments.SecondFragment;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,8 +36,11 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_layouts_example);
 
-        getSupportFragmentManager().beginTransaction().add(new MainFragment(),"MainFragment");
-        /*Button button=findViewById(R.id.asyncTask);
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container1,new MainFragment())
+                .commit();
+
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container2,new SecondFragment())
+                .commit();        /*Button button=findViewById(R.id.asyncTask);
         imageView=findViewById(R.id.image);
         button.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,24 +1,17 @@
 package com.androidtraining.androidhelloworld;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -33,16 +26,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidtraining.androidhelloworld.fragments.MainFragment;
-import com.androidtraining.androidhelloworld.services.ServiceExample;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.androidtraining.androidhelloworld.fragments.SecondFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
-    TextView helloworldText,subtitle;
-    Button buttonBottom;
     RadioButton btn1, btn2;
-    RadioGroup radioGroup;
     CheckBox checkBox1,checkBox2;
     ImageButton imagebutton;
     ProgressBar progressBar;
@@ -53,13 +42,19 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     ConstraintLayout parentView;
     public static String dataKey = "dataKey";
+
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("ActivityTag"," Activity1 onCreate()");
 
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,new MainFragment())
+        sharedPreferences = getSharedPreferences("Dummy", Context.MODE_PRIVATE);
+       /* getSupportFragmentManager().beginTransaction().add(R.id.fragment_container1,new MainFragment())
+                .commit();*/
+
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container2,new SecondFragment())
                 .commit();
 
         /* Step by step procedure to add a fragment */

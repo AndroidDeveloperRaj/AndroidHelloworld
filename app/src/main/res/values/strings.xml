@@ -2,4 +2,6 @@
     <string name="app_name">AndroidHelloworld</string>
     <string name="launcher_text">This is Launcher screen</string>
     <string name="android_poc_text">Android POC</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

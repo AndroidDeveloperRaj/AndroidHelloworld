@@ -1,12 +1,14 @@
 package com.androidtraining.androidhelloworld.fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +20,7 @@ public class MainFragment extends Fragment {
 
 
     private ProgressBar progress;
+    private SharedPreferences sharedPreferences;
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -35,7 +38,11 @@ public class MainFragment extends Fragment {
         progress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progress.setVisibility(View.GONE);
+               // progress.setVisibility(View.GONE);
+                sharedPreferences = getActivity().getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
+                Toast.makeText(getActivity(),"Value From SharedPreferences:   " +
+                        sharedPreferences.getString("hello",null),Toast.LENGTH_LONG)
+                        .show();
             }
         });
        // linearLayout = (LinearLayout) rootView.findViewById(R.id.linearlayout);
